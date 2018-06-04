@@ -18,7 +18,7 @@ def show_main_menu(authors):
 
         if decision == "1":
 
-            final_dishes = common.meal_type_decision("find")
+            final_dishes = common.find_meals()
 
             if len(final_dishes) < 1:
                 print("\nA t t e n t i o n  ! ! !\nThere is no such product !!!\n")
@@ -33,7 +33,7 @@ def show_main_menu(authors):
 
         elif decision == "2":
 
-            food_recipes = common.meal_type_decision("show")
+            food_recipes = common.show_meals()
             printing.print_results(food_recipes)
             all_dishes = common.get_list_of_ordered_dishes(food_recipes)
             dish_name = common.choose_dish(all_dishes, all_dishes)
@@ -60,7 +60,6 @@ def main():
     printing.display_graphics(welcome_screen)
     input("\nClick anything to start")
     system("clear")
-
     show_main_menu(authors)
     system("clear")
     printing.display_graphics(end_screen)

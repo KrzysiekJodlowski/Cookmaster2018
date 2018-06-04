@@ -62,20 +62,23 @@ def deciding_to_add_note(choosen_dish):
             print("\nYou can type only 'y' or 'n'\n")
 
 
-# show recipes for breakfast, dinner and supper
-def show_recipes(show_or_find, filename):
+def find_meals():
 
-    if show_or_find == "find":
-        final_dishes = search_type(filename)
-        return final_dishes
-    elif show_or_find == "show":
-        print("\n*{0}*\n".format((filename.strip(".txt")).upper()))
-        food_recipes = import_recipes(filename)
-        return food_recipes
+    meal_type = meal_type_decision()
+    final_dishes = search_type(meal_type)
+    return final_dishes
+
+
+def show_meals():
+
+    meal_type = meal_type_decision()
+    print("\n*{0}*\n".format((meal_type.strip(".txt")).upper()))
+    food_recipes = import_recipes(meal_type)
+    return food_recipes
 
 
 # choosing meal type
-def meal_type_decision(show_or_find):
+def meal_type_decision():
 
     choose = "0"
     breakfast, supper, dinner = "breakfast.txt", "supper.txt", "dinner.txt"
@@ -83,11 +86,11 @@ def meal_type_decision(show_or_find):
     while choose != "b" or choose != "s" or choose != "d":
         choose = input("You want receipts for: breakfast, supper or dinner? (b,s,d)\n")
         if choose == "b":
-            return show_recipes(show_or_find, breakfast)
+            return breakfast
         elif choose == "s":
-            return show_recipes(show_or_find, supper)
+            return supper
         elif choose == "d":
-            return show_recipes(show_or_find, dinner)
+            return dinner
         else:
             print("\nsomething went wrong, be sure you typed 'b', 's' or 'd'\n")
 
