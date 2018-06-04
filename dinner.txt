@@ -1,0 +1,10 @@
+tomato soup
+tomato puree:1,sour cream:1,stock cube:1
+minced chop
+minced meat:1,onion:1,eggs:1
+vegetable salad
+carrot:2,apple:3
+spaghetti bolognese
+pasta:1,tomato:2,garlic:1,minced meat:1
+dumplings
+flour:1,potatoes:2,white cheese:1

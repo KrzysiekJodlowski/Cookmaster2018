@@ -1,0 +1,10 @@
+sandwich with cheese
+bread:1,butter:1,cheese:3
+sandwich with peanut butter
+bread:1,peanut butter:1
+omlette
+eggs:4,butter:1
+french toasts
+bread:1,eggs:2,milk:1,butter:1
+english breakfast
+bacon:1,eggs:2,pork sausages:1,black pudding:2
