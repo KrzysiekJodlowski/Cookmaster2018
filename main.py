@@ -1,6 +1,6 @@
 from os import system
 import os.path
-import printing
+import ui
 import common
 
 
@@ -13,7 +13,7 @@ def show_main_menu(authors):
 
     while decision != "4":
 
-        printing.display_graphics(main_menu)
+        ui.display_graphics(main_menu)
         decision = input("\nWhat you want to do?\n")
 
         if decision == "1":
@@ -21,31 +21,31 @@ def show_main_menu(authors):
             final_dishes = common.find_meals()
 
             if len(final_dishes) < 1:
-                print("\nA t t e n t i o n  ! ! !\nThere is no such product !!!\n")
+                ui.print_warning("There is no such product")
             else:
-                printing.print_results(final_dishes)
+                ui.print_results(final_dishes)
                 all_dishes = list(final_dishes.keys())  # common.get_list_of_ordered_dishes(final_dishes)
                 choosen_dish = common.choose_dish(final_dishes, all_dishes)
-                print("\n***", choosen_dish.upper(), "***\n")
-                printing.print_recipe(choosen_dish, dishes_details_directory)
+                ui.print_header(choosen_dish)
+                ui.print_recipe(choosen_dish, dishes_details_directory)
                 common.deciding_to_add_note(choosen_dish)
                 return
 
         elif decision == "2":
 
             food_recipes = common.show_meals()
-            printing.print_results(food_recipes)
+            ui.print_results(food_recipes)
             all_dishes = common.get_list_of_ordered_dishes(food_recipes)
             dish_name = common.choose_dish(all_dishes, all_dishes)
-            print("\n***", dish_name.upper(), "***\n")
-            printing.print_recipe(dish_name, "dishes_details/")
+            ui.print_header(dish_name)
+            ui.print_recipe(dish_name, "dishes_details/")
 
             if os.path.isfile("dishes_notes/" + dish_name + ".txt") is True:
-                print("    N O T E S \n")
-                printing.print_recipe(dish_name, "dishes_notes/")
+                ui.print_header("NOTES")
+                ui.print_recipe(dish_name, "dishes_notes/")
 
         elif decision == "3":
-            printing.display_graphics(authors)
+            ui.display_graphics(authors)
             input("Hit any key to exit")
 
 
@@ -57,12 +57,12 @@ def main():
     authors = "graphics/authors.txt"
 
     system("clear")
-    printing.display_graphics(welcome_screen)
+    ui.display_graphics(welcome_screen)
     input("\nClick anything to start")
     system("clear")
     show_main_menu(authors)
     system("clear")
-    printing.display_graphics(end_screen)
+    ui.display_graphics(end_screen)
 
 
 if __name__ == "__main__":

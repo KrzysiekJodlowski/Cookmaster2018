@@ -1,5 +1,6 @@
 import algorithms
 import note
+import ui
 
 
 # importing recipes as dictionary from file
@@ -30,7 +31,10 @@ def choose_dish(final_dishes, all_dishes):
 
     while dish_name not in final_dishes:
         dish_number = input("Choose number of dish recipe You want to see!\n")
-        dish_name = all_dishes[int(dish_number)-1]
+        try:
+            dish_name = all_dishes[int(dish_number)-1]
+        except IndexError:
+            ui.print_warning("You selected number from outside of the list")
 
     return dish_name
 
@@ -59,8 +63,7 @@ def deciding_to_add_note(choosen_dish):
         elif decision == "n":
             return
         else:
-            print("\nYou can type only 'y' or 'n'\n")
-
+            ui.print_warning("You can type only 'y' or 'n'")
 
 def find_meals():
 
@@ -82,17 +85,17 @@ def meal_type_decision():
 
     choose = "0"
     breakfast, supper, dinner = "breakfast.txt", "supper.txt", "dinner.txt"
-    # while choose not in ('b','s','d'):
-    while choose != "b" or choose != "s" or choose != "d":
-        choose = input("You want receipts for: breakfast, supper or dinner? (b,s,d)\n")
-        if choose == "b":
-            return breakfast
-        elif choose == "s":
-            return supper
-        elif choose == "d":
-            return dinner
-        else:
-            print("\nsomething went wrong, be sure you typed 'b', 's' or 'd'\n")
+    meal_list = ["breakfast", "supper", "dinner"]
+
+    ui.print_list_of_options_to_choose(meal_list)
+    choose = ui.get_input_from_user(ui.get_length_of_the_list(meal_list))
+
+    if choose == "1":
+        return breakfast
+    elif choose == "2":
+        return supper
+    elif choose == "3":
+        return dinner
 
 
 # getting dishes by choosen algorithm
@@ -112,7 +115,7 @@ def search_type(file_type):
             final_dishes = algorithms.get_dishes_by_one_component(components, dishes)
             break
         else:
-            print("\nare you sure you picked 1 or 2? Try again!\n")
+            ui.print_warning("Are you sure you picked 1 or 2? Try again!")
 
     return final_dishes
 
@@ -127,7 +130,7 @@ def pick_components(type):
             number_of_ingredients = int(input("How many ingredients you want to use?\n"))
             ingredients_integer = False
         except ValueError:
-            print("\nYou need to write a number!\n")
+            ui.print_warning("You need to write a number")
 
     if type == "1":
         components = {}
